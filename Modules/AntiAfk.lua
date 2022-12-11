@@ -3,16 +3,18 @@ module.defaultState = false
 function module.idled()
     game:GetService("VirtualUser"):ClickButton2(Vector2.new())
 end
-module.connection = nil
+
 function module:setState(bool_state)
-    if bool_state == true then
-        if module.connection then return end
-        module.connection = core:gPlayer().Idled:Connect(module.idled)
+    if bool_state == self.defaultState then return end
+    if bool_state then
+        self.connection = core:gPlayer().Idled:Connect(self.idled)
     else
-        if not module.connection then return end
-        module.connection:Disconnect()
+        self.connection:Disconnect()
+        self.connection = nil
     end
+    self.defaultState = bool_state
     return true
 end
+
 module:setState(module.defaultState)
 return module

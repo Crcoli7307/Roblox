@@ -1,16 +1,10 @@
 local Data = {}
-Data.cache = getgc(true)
-Data.tables = {}
-for i, v in pairs(Data.cache) do
-    if type(v) == 'table' then
-        table.insert(Data.tables, v)
-    end
-end
 
 function Data:deepSearch(key)
-    for _, module in pairs(Data.tables) do
-        if rawget(module, key) then
-            return module
+    local cache = getgc(true)
+    for i, v in pairs(cache) do
+        if type(v) == 'table' and rawget(v, key) then
+            return v
         end
     end
     return nil
