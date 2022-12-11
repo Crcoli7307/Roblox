@@ -1,14 +1,6 @@
 -- Load the core library
 core = loadstring(game:HttpGet('https://raw.githubusercontent.com/brownfieldd00/core/main/core.lua'))()
-
--- Import the UiLibrary module and stop any running instances
-core:gModule('UiLibrary')
-core:stopRunningInstance()
-
--- Register the current session
-core:registerSession()
-
--- Create the main window
+core:gModule('UiLibrary'); core:stopRunningInstance(); core:registerSession();
 local MainWindow = library:AddWindow('[FREE ADMIN] GUI - github.com/brownfieldd00')
 
 -- Add a tab to the main window

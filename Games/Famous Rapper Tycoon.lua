@@ -1,7 +1,12 @@
 core = loadstring(game:HttpGet('https://raw.githubusercontent.com/brownfieldd00/core/main/core.lua'))()
 core:gModule('UiLibrary'); local antiAfk = core:gModule('AntiAfk'); 
 core:stopRunningInstance(); core:registerSession();
-
+-- Compatibility
+library = library or {}
+fireproximityprompt = fireproximityprompt or function()
+    core:gPlayer():Kick('Unsupported executor.')
+    return
+end
 local Tycoons = workspace.Tycoons
 local NPCs = workspace.NPCS
 
@@ -65,9 +70,6 @@ local AntiAFK = MainTab:AddSwitch('Anti AFK', function(state)
     antiAfk:setAntiAFK(state)
     core:notify('Anti AFK: ' .. tostring(state))
 end)
-
-local cycle = 0
-
 localScript = coroutine.wrap(function()
     while run == true do
         task.wait(); cycle = cycle + 1;

@@ -1,3 +1,5 @@
+--!nolint DeprecatedGlobal
+--!nolint BuiltinGlobalWrite
 local meta = {}
 meta.__index = function(self, key)
 	return game:GetService(key)
